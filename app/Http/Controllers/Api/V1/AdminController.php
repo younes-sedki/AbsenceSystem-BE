@@ -17,6 +17,7 @@ use App\Models\ProblemReport;
 use App\Models\ProfileChangeRequest;
 use App\Models\SmsLog;
 use App\Models\User;
+use App\Services\PatternDetectionService;
 use App\Services\SmsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -151,5 +152,13 @@ class AdminController extends Controller
         $profileRequest->update(['statut' => 'rejetee', 'reviewed_by' => $request->user()->id]);
 
         return response()->json(['success' => true, 'data' => new ProfileChangeRequestResource($profileRequest->fresh('user')), 'message' => 'Demande rejetee.']);
+    }
+
+    public function patterns(PatternDetectionService $service): JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => $service->detectAll(),
+        ]);
     }
 }

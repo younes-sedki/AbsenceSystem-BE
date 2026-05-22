@@ -50,6 +50,7 @@ Route::prefix('v1')->group(function () {
             Route::post('/profile-requests/{profileRequest}/rejeter', [AdminController::class, 'rejeterProfile']);
             Route::get('/problems', [AdminController::class, 'problems']);
             Route::post('/problems/{problemReport}/resoudre', [AdminController::class, 'resoudreProblem']);
+            Route::get('/patterns', [AdminController::class, 'patterns']);
         });
     });
 });
