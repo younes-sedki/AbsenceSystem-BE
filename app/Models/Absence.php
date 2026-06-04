@@ -29,8 +29,12 @@ class Absence extends Model
         return $this->hasOne(Justification::class);
     }
 
-    public function getJoursRestantsAttribute(): int
+    public function getJoursRestantsAttribute(): ?int
     {
-        return now()->startOfDay()->diffInDays($this->date_limite->copy()->startOfDay(), false);
+        if (! $this->date_limite) {
+            return null;
+        }
+
+        return (int) now()->startOfDay()->diffInDays($this->date_limite->copy()->startOfDay(), false);
     }
 }

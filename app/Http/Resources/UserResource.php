@@ -23,7 +23,6 @@ class UserResource extends JsonResource
             'classe' => new ClasseResource($this->whenLoaded('classe')),
             'filiere' => $this->filiere,
             'assignments' => TeacherAssignmentResource::collection($this->whenLoaded('teacherAssignments')),
-            'sessions_count' => $this->when(isset($this->sessions_appel_count), $this->sessions_appel_count),
         ];
     }
 }

@@ -71,27 +71,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sms_logs', function (Blueprint $table) {
-            $table->id();
-            $table->string('destinataire_nom');
-            $table->string('telephone')->nullable();
-            $table->text('message');
-            $table->enum('type', ['absence_detectee', 'rappel_justification', 'justification_acceptee', 'justification_rejetee']);
-            $table->enum('statut', ['envoye', 'echoue']);
-            $table->timestamp('sent_at');
-            $table->timestamps();
-        });
-
-        Schema::create('profile_change_requests', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('champ');
-            $table->text('ancienne_valeur')->nullable();
-            $table->text('nouvelle_valeur');
-            $table->enum('statut', ['en_attente', 'approuvee', 'rejetee'])->default('en_attente');
-            $table->foreignId('reviewed_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->timestamps();
-        });
     }
 
     public function down(): void
@@ -100,8 +79,6 @@ return new class extends Migration
             $table->dropForeign(['classe_id']);
         });
 
-        Schema::dropIfExists('profile_change_requests');
-        Schema::dropIfExists('sms_logs');
         Schema::dropIfExists('justifications');
         Schema::dropIfExists('absences');
         Schema::dropIfExists('sessions_appel');

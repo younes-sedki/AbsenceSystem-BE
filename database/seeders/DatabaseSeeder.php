@@ -49,9 +49,9 @@ class DatabaseSeeder extends Seeder
             ['code' => 'M208', 'intitule' => 'Projet de synthese 2', 'annee' => '2'],
         ])->mapWithKeys(fn ($module) => [$module['code'] => Module::updateOrCreate(['code' => $module['code']], $module)]);
 
-        User::updateOrCreate(['email' => 'ahmed.benali@ista.ma'], [
-            'nom' => 'Benali',
-            'prenom' => 'Ahmed',
+        User::updateOrCreate(['email' => 'younes_sedki@hotmail.fr'], [
+            'nom' => 'Sedki',
+            'prenom' => 'Younes',
             'password' => Hash::make('etudiant123'),
             'role' => 'etudiant',
             'telephone' => '+212600000001',

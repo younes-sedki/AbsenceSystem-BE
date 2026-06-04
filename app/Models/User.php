@@ -75,14 +75,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(SessionAppel::class, 'teacher_id');
     }
-
-    public function profileChangeRequests(): HasMany
-    {
-        return $this->hasMany(ProfileChangeRequest::class);
-    }
-
-    public function problemReports(): HasMany
-    {
-        return $this->hasMany(ProblemReport::class);
-    }
 }
